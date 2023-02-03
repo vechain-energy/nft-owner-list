@@ -86,9 +86,9 @@ export default function NftHolders ({ address }: Props): React.ReactElement {
   useEffect(() => {
     const owners = {}
 
-    const ensureOwner = (address): any => owners[address] !== undefined || (owners[address] = { address, tokenIds: new Set() })
+    const ensureOwnerExists = (address): any => owners[address] !== undefined || (owners[address] = { address, tokenIds: new Set() })
     events.forEach(event => {
-      [event._from, event._to].map(ensureOwner)
+      [event._from, event._to].map(ensureOwnerExists)
 
       owners[event._from].tokenIds.delete(event.tokenId)
       owners[event._to].tokenIds.add(event.tokenId)
@@ -100,19 +100,18 @@ export default function NftHolders ({ address }: Props): React.ReactElement {
   return (
     <>
       {error !== '' && <Alert message='failed to load events' description={error} type='error' showIcon closable />}
+
       <Table
+        loading={loading}
         rowKey='address'
         dataSource={
           [...Object.values(owners)]
             .filter(({ tokenIds }) => tokenIds.size > 0)
         }
         expandable={{
-          expandedRowRender: (owner) => (
-            <Text type='secondary'>Owned Tokens: {Array.from(owner.tokenIds).join(', ')}</Text>
-          ),
+          expandedRowRender: (owner) => <Text type='secondary'>Owned Tokens: {Array.from(owner.tokenIds).join(', ')}</Text>,
           rowExpandable: (owner: Owner) => owner.tokenIds.size > 0
         }}
-        loading={loading}
       >
         <Table.Column
           title='Owner'
@@ -125,6 +124,7 @@ export default function NftHolders ({ address }: Props): React.ReactElement {
           sorter={(a: Owner, b: Owner) => a.tokenIds.size - b.tokenIds.size}
         />
       </Table>
+
       <Button block type='primary' onClick={handleDownload}>Download as CSV</Button>
     </>
   )
