@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "target": "es2021",
+    "strict": true,
+    "outDir": "./dist/",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strictNullChecks": true
+  },
+  "ts-standard": {
+    "ignore": [
+      "dist"
+    ]
+  }
+}
