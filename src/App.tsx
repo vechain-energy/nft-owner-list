@@ -3,7 +3,7 @@ import { Input, Row, Col } from 'antd'
 import NftHolders from './NftHolders'
 
 export function App (): React.ReactElement {
-  const [contractAddress, setContractAddress] = useState<string>('0xe0ab6916048ee208154bd76f1343d84b726fa62a')
+  const [contractAddress, setContractAddress] = useState<string>('0xC35d04F8783f85eDe2f329eed3C1E8B036223A06')
 
   return (
     <Row gutter={[24, 24]}>
