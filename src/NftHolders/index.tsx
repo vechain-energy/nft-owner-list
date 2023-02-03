@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver'
 
 import Papa from 'papaparse'
 
-const CHUNK_SIZE = 1000
+const CHUNK_SIZE = 250
 const MAX_RETRIES = 10
 
 const { Text } = Typography
@@ -108,7 +108,7 @@ export default function NftHolders ({ address }: Props): React.ReactElement {
         }
         expandable={{
           expandedRowRender: (owner) => (
-            <Text type='secondary'>Owned tokens: {Array.from(owner.tokenIds).join(', ')}</Text>
+            <Text type='secondary'>Owned Tokens: {Array.from(owner.tokenIds).join(', ')}</Text>
           ),
           rowExpandable: (owner: Owner) => owner.tokenIds.size > 0
         }}
