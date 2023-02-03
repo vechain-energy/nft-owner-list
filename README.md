@@ -1,3 +1,7 @@
+- determine all owners of NFT tokens for a given contract address
+- detected by loading all transfer events
+- example installation: https://owners.nft.tools.vechain.energy
+
 # Scripts
 
 * **`yarn start`** for running a development version
